@@ -1,0 +1,44 @@
+#Problem 878
+#Python
+#Works, but takes too long
+
+class Solution:
+    def nthMagicalNumber(self, N, A, B):
+        """
+        :type N: int
+        :type A: int
+        :type B: int
+        :rtype: int
+        """
+        countA, countB, count = 1, 1, 0
+        numbers = {}
+        mod = 10 ** 9 + 7
+        
+        if A == B or B % A is 0:
+            return (A*N) % mod
+        elif A % B is 0:
+            return (B*N) % mod
+        
+        while(1):
+            if countA*A <= countB*B:
+                if countA * A not in numbers:
+                    numbers[countA*A] = 1
+                    count +=1
+                    if count == N:
+                        return countA*A % mod
+                countA +=1
+            else:
+                if countB * B not in numbers:
+                    numbers[countB*B] = 1
+                    count +=1
+                    if count == N:
+                        return countB*B % mod
+                countB +=1
+            
+                
+            '''
+            if i % A is 0 or i % B is 0:
+                count +=1
+            if count == N:
+                return i % (10 ** 9 + 7)
+            i += 1'''
