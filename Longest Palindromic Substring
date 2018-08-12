@@ -1,0 +1,56 @@
+#Problem #5
+#Python3
+
+class Solution:
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if len(s) is 0:
+            return ""
+        elif len(s) is 1:
+            return s
+        max_palindrome = ""
+        for i in range(0, len(s)):
+            current = self.returnPalindrome(s, i)
+            #print(current)
+            if len(current) > len(max_palindrome):
+                max_palindrome = current
+        
+        return max_palindrome
+            
+    def returnPalindrome(self, s, i):
+        #print("String is: {}, i is {}".format(s, i))
+        left = i-1
+        right = i+1
+        current_string = ""
+        if i is 0:
+            current_string = s[i]
+        while left >= 0 and right < len(s):
+         #   print(s[left:right+1])
+            if s[left] == s[right]:
+                current_string = s[left:right+1]
+                left-=1
+                right +=1
+            else:
+                break
+        #print("Current count is {}".format(len(current_string)))
+        current_max = current_string
+        left = i
+        right = i+1
+        current_string = ""
+        
+        while left>=0 and right < len(s):
+            #print(s[left:right+1])
+            if s[left] == s[right]:
+                current_string = s[left:right+1]
+                left-=1
+                right +=1
+            else:
+                break
+        #print("Current count is {}".format(current_string))
+        if len(current_string) > len(current_max):
+            current_max = current_string
+        #print("Current max is " + current_max)
+        return current_max
