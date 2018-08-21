@@ -1,0 +1,19 @@
+#Problem 804
+#Python3
+
+class Solution:
+    def uniqueMorseRepresentations(self, words):
+        """
+        :type words: List[str]
+        :rtype: int
+        """
+        morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."]
+        
+        temp_str = ""
+        unique_codes = set()
+        for word in words:
+            for char in word:
+                temp_str += morse[ord(char) - 97]
+            unique_codes.add(temp_str)
+            temp_str = ""
+        return len(unique_codes)
