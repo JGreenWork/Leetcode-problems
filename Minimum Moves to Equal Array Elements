@@ -1,0 +1,12 @@
+#Problem 453
+#Python3
+
+class Solution:
+    def minMoves(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        #sum - min_num * n
+        
+        return sum(nums) - (min(nums)*len(nums))
