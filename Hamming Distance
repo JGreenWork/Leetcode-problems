@@ -1,0 +1,26 @@
+#Problem 461
+#Python3
+
+class Solution:
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        
+        string_x = str(bin(x))[2:]
+        string_y = str(bin(y))[2:]
+        
+        while len(string_x) > len(string_y):
+            string_y = "0" + string_y
+        while len(string_y) > len(string_x):
+            string_x = "0" + string_x
+        while len(string_x)%4 != 0:
+            string_x = "0" + string_x
+            string_y = "0" + string_y
+        count = 0
+        for char_x, char_y in zip(string_x, string_y):
+            if char_x != char_y:
+                count+=1
+        return count
