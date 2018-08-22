@@ -1,0 +1,30 @@
+#Problem 303
+#Python3
+
+class NumArray:
+
+    def __init__(self, nums):
+        """
+        :type nums: List[int]
+        """
+        self.numbers = {}
+        self.numbers[0] = 0
+        sum = 0
+        count = 1
+        for num in nums:
+            sum += num
+            self.numbers[count] = sum
+            count+=1
+
+    def sumRange(self, i, j):
+        """
+        :type i: int
+        :type j: int
+        :rtype: int
+        """
+        return self.numbers[j+1]-self.numbers[i]        
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(i,j)
