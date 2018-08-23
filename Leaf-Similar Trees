@@ -1,0 +1,35 @@
+#Problem 872
+#Python3
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def leafSimilar(self, root1, root2):
+        """
+        :type root1: TreeNode
+        :type root2: TreeNode
+        :rtype: bool
+        """
+        first_tree = []
+        second_tree = []
+        
+        self.search(first_tree, root1)
+        self.search(second_tree, root2)
+        
+        if first_tree == second_tree:
+            return True
+        else:
+            return False
+    
+    def search(self, tree, root):
+        if root is not None:
+            if root.left is None and root.right is None:
+                tree.append(root.val)
+            else:
+                self.search(tree, root.left)
+                self.search(tree, root.right)
