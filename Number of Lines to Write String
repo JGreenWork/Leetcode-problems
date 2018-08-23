@@ -1,0 +1,24 @@
+#Problem 806
+#Python3
+
+class Solution:
+    def numberOfLines(self, widths, S):
+        """
+        :type widths: List[int]
+        :type S: str
+        :rtype: List[int]
+        """
+        lines = 1
+        chars = 0
+        if len(S) == 0:
+            return [0,0]
+        for char in S:
+            next_chunk = widths[ord(char)-ord('a')]
+            #print(next_chunk)
+            if (chars + next_chunk) > 100:
+                chars = next_chunk
+                lines +=1
+            else:
+                chars += next_chunk
+        
+        return list((lines, chars))
