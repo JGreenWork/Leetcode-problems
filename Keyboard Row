@@ -1,0 +1,30 @@
+#Problem 500
+#Python3
+
+class Solution:
+    def findWords(self, words):
+        """
+        :type words: List[str]
+        :rtype: List[str]
+        """
+        row1 = "qwertyuiop"
+        row2 = "asdfghjkl"
+        row3 = "zxcvbnm"
+        row_list = [row1, row2, row3]
+        word_list = []
+        return_list = []
+        for word in words:
+            word_list.append(word.lower())
+        
+        for word, original in zip(word_list, words):
+            all_in_same_row = 1
+            for row in row_list:
+                if word[0] in row:
+                    current_row = row
+            for letter in word:
+                if letter not in current_row:
+                    all_in_same_row = 0
+            if all_in_same_row == 1:
+                return_list.append(original)
+        
+        return return_list
