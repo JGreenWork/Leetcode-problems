@@ -1,0 +1,25 @@
+#Problem 476
+#Python3
+
+from collections import deque
+
+class Solution:
+    def findComplement(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        new_num = deque()
+        answer = 0
+        count = 1
+        while num > 0:
+            if num % 2 == 1:
+                new_num.appendleft(0)
+            else:
+                new_num.appendleft(1)
+            num = num//2
+        
+        for i in range(len(new_num)-1, -1, -1):
+            answer += new_num[i]*count
+            count = count*2
+        return answer
