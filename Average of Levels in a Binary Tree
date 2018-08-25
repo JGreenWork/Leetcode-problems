@@ -1,0 +1,35 @@
+#Problem 637
+#Python3
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def averageOfLevels(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[float]
+        """
+        counts = []
+        values = []
+        averages = []
+        
+        self.search_tree(counts, values, root, 0)
+        for count, value in zip(counts, values):
+            averages.append(value/count)
+        return averages
+    
+    def search_tree(self, counts, values, root, height):
+        if root is not None:
+            if height >= len(counts):
+                counts.append(1)
+                values.append(root.val)
+            else:
+                counts[height] +=1
+                values[height] += root.val
+            self.search_tree(counts, values, root.left, height+1)
+            self.search_tree(counts, values, root.right, height+1)
