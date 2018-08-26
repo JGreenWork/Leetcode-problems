@@ -1,0 +1,23 @@
+#Problem 557
+#Python3
+
+class Solution:
+    def reverseWords(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        word_list = s.split()
+        new_list = []
+        
+        for word in word_list:
+            temp_word = list(word)
+            for i, j in zip(range(0, len(word)), range(len(word)-1, -1, -1)):
+                if i < j:
+                    temp = temp_word[i]
+                    temp_word[i] = temp_word[j]
+                    temp_word[j] = temp
+                #print(temp_word)
+            new_list.append("".join(temp_word))
+        
+        return " ".join(new_list)
